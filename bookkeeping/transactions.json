@@ -1,0 +1,489 @@
+{
+  "transactions": [
+    {
+      "sno": 1,
+      "date": "01-04-2025",
+      "description": "Henry Started Business with Cash",
+      "amount": 100000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Cash",
+          "classification": "ASSETES",
+          "increase_decrease": "Increase",
+          "debit_credit": "DR",
+          "amount": 100000
+        },
+        {
+          "name": "Henry Capital",
+          "classification": "LIABILITY",
+          "increase_decrease": "Increase",
+          "debit_credit": "CR",
+          "amount": 100000
+        }
+      ]
+    },
+    {
+      "sno": 2,
+      "date": "03-04-2025",
+      "description": "Deposited Cash in SBI Bank Account",
+      "amount": 60000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Bank",
+          "classification": "ASSETES",
+          "increase/decrease": "Increase",
+          "debit/credit": "DR",
+          "amount": 60000
+        },
+        {
+          "name": "Cash",
+          "classification": "ASSETES",
+          "increase/decrease": "Decrease",
+          "debit/credit": "CR",
+          "amount": 60000
+        }
+      ]
+    },
+    {
+      "sno": 3,
+      "date": "05-04-2025",
+      "description": "Purchased Goods by cash",
+      "amount": 30000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Purchase",
+          "classification": "EXPENSES",
+          "increase_decrease": "Increase",
+          "debit_credit": "DR",
+          "amount": 30000
+        },
+        {
+          "name": "Cash",
+          "classification": "ASSETES",
+          "increase_decrease": "Decrease",
+          "debit_credit": "CR",
+          "amount": 30000
+        }
+      ]
+    },
+    {
+      "sno": 4,
+      "date": "06-04-2025",
+      "description": "Paid Cash for Transportation Expenses",
+      "amount": 2000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Transportation charges",
+          "classification": "EXPENSES",
+          "increase/decrease": "Increase",
+          "debit/credit": "DR",
+          "amount": 2000
+        },
+        {
+          "name": "Cash",
+          "classification": "ASSETES",
+          "increase/decrease": "Decrease",
+          "debit/credit": "CR",
+          "amount": 2000
+        }
+      ]
+    },
+    {
+      "sno": 5,
+      "date": "08-04-2025",
+      "description": "Cash Sales",
+      "amount": 36000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Cash",
+          "classification": "ASSETES",
+          "increase_decrease": "Increase",
+          "debit_credit": "DR",
+          "amount": 36000
+        },
+        {
+          "name": "Sales",
+          "classification": "INCOME",
+          "increase_decrease": "Increase",
+          "debit_credit": "CR",
+          "amount": 36000
+        }
+      ]
+    },
+    {
+      "sno": 6,
+      "date": "09-04-2025",
+      "description": "Credit Purchase from Michael",
+      "amount": 50000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Purchase",
+          "classification": "EXPENSES",
+          "increase/decrease": "Increase",
+          "debit/credit": "DR",
+          "amount":50000
+        },
+        {
+          "name": "Michael",
+          "classification": "LIABILITY",
+          "increase/decrease": "Increase",
+          "debit/credit": "CR",
+          "amount": 50000
+        }
+      ]
+    },
+    {
+      "sno": 7,
+      "date": "11-04-2025",
+      "description": "Rent paid in cash",
+      "amount": 12000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Rent",
+          "classification": "EXPENSES",
+          "increase_decrease": "Increase",
+          "debit_credit": "DR",
+          "amount": 12000
+        },
+        {
+          "name": "Cash",
+          "classification": "ASSETES",
+          "increase_decrease": "Decrease",
+          "debit_credit": "CR",
+          "amount": 12000
+        }
+      ]
+    },
+    {
+      "sno": 8,
+      "date": "12-04-2025",
+      "description": "Cheque issued to Michael ",
+      "amount": 50000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Michael",
+          "classification": "LIABILITY",
+          "increase/decrease": "Decrease",
+          "debit/credit": "DR",
+          "amount": 50000
+        },
+        {
+          "name": "Bank",
+          "classification": "ASSETES",
+          "increase/decrease": "Decrease",
+          "debit/credit": "CR",
+          "amount": 50000
+        }
+      ]
+    },
+    {
+      "sno": 9,
+      "date": "14-04-2025",
+      "description": "Sold goods to Ava on credit",
+      "amount": 80000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Ava",
+          "classification": "ASSETES",
+          "increase_decrease": "Increase",
+          "debit_credit": "DR",
+          "amount": 80000
+        },
+        {
+          "name": "Sales",
+          "classification": "INCOME",
+          "increase_decrease": "Increase",
+          "debit_credit": "CR",
+          "amount": 80000
+        }
+      ]
+    },
+    {
+      "sno": 10,
+      "date": "15-04-2025",
+      "description": "Telephone Bill Paid Through bank",
+      "amount": 1000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Telephoen Bill",
+          "classification": "EXPENSES",
+          "increase/decrease": "Increase",
+          "debit/credit": "DR",
+          "amount": 1000
+        },
+        {
+          "name": "Bank",
+          "classification": "ASSETES",
+          "increase/decrease": "Decrease",
+          "debit/credit": "CR",
+          "amount": 1000
+        }
+      ]
+    },
+    {
+      "sno": 11,
+      "date": "17-04-2025",
+      "description": "Cheque Received From Ava",
+      "amount": 80000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Bank",
+          "classification": "ASSETES",
+          "increase_decrease": "Increase",
+          "debit_credit": "DR",
+          "amount": 80000
+        },
+        {
+          "name": "Ava",
+          "classification": "ASSETES",
+          "increase_decrease": "Decrease",
+          "debit_credit": "CR",
+          "amount": 80000
+        }
+      ]
+    },
+    {
+      "sno": 12,
+      "date": "19-04-2025",
+      "description": "Purchasesd Goods From Apple Inc on Credit",
+      "amount": 100000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Purchase",
+          "classification": "EXPENSES",
+          "increase/decrease": "Increase",
+          "debit/credit": "DR",
+          "amount": 100000
+        },
+        {
+          "name": "Apple Inc",
+          "classification": "LIABILITY",
+          "increase/decrease": "Increase",
+          "debit/credit": "CR",
+          "amount": 100000
+        }
+      ]
+    },
+    {
+      "sno": 13,
+      "date": "20-04-2025",
+      "description": "Goods Returned To Apple Inc",
+      "amount": 5000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Apple Inc",
+          "classification": "LIABILITY",
+          "increase_decrease": "Decrease",
+          "debit_credit": "DR",
+          "amount": 5000
+        },
+        {
+          "name": "Purchase Return",
+          "classification": "INCOME",
+          "increase_decrease": "Increase",
+          "debit_credit": "CR",
+          "amount": 5000
+        }
+      ]
+    },
+    {
+      "sno": 14,
+      "date": "21-04-2025",
+      "description": "Discount Received From Apple Inc",
+      "amount": 5000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Apple Inc",
+          "classification": "LIABILITY",
+          "increase/decrease": "Decrease",
+          "debit/credit": "DR",
+          "amount": 5000
+        },
+        {
+          "name": "Discount Received",
+          "classification": "INCOME",
+          "increase/decrease": "Increase",
+          "debit/credit": "CR",
+          "amount": 5000
+        }
+      ]
+    },
+    {
+      "sno": 15,
+      "date": "22-04-2025",
+      "description": "Goods Sold to Samsung Ltd ",
+      "amount": 120000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Samsung Ltd",
+          "classification": "ASSETES",
+          "increase_decrease": "Increase",
+          "debit_credit": "DR",
+          "amount": 120000
+        },
+        {
+          "name": "Sales",
+          "classification": "INCOME",
+          "increase_decrease": "Increase",
+          "debit_credit": "CR",
+          "amount": 120000
+        }
+      ]
+    },
+    {
+      "sno": 16,
+      "date": "23-04-2025",
+      "description": "Goods Returned by Samsung Ltd",
+      "amount": 10000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Sales Return",
+          "classification": "EXPENSES",
+          "increase_decrease": "Increase",
+          "debit_credit": "DR",
+          "amount": 10000
+        },
+        {
+          "name": "Samsung Ltd",
+          "classification": "ASSETES",
+          "increase_decrease": "Decrease", 
+          "debit_credit": "CR",
+          "amount": 10000
+        }
+      ]
+    },
+    {
+      "sno": 17,
+      "date": "25-04-2025",
+      "description": "Discount Allowed to Samsung Ltd",
+      "amount": 10000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Discount Allowed",
+          "classification": "EXPENSES",
+          "increase/decrease": "Increase",
+          "debit/credit": "DR",
+          "amount": 10000
+        },
+        {
+          "name": "Samsung Ltd",
+          "classification": "ASSETES",
+          "increase/decrease": "Decrease",
+          "debit/credit": "CR",
+          "amount": 10000
+        }
+      ]
+    },
+    {
+      "sno": 18,
+      "date": "26-04-2025",
+      "description": "Cheque Received from Samsung Ltd",
+      "amount": 80000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Bank",
+          "classification": "ASSETES",
+          "increase_decrease": "Increase",
+          "debit_credit": "DR",
+          "amount": 80000
+        },
+        {
+          "name": "Samsung Ltd",
+          "classification": "ASSETES",
+          "increase_decrease": "Decrease",
+          "debit_credit": "CR",
+          "amount": 80000
+        }
+      ]
+    },
+    {
+      "sno": 19,
+      "date": "28-04-2025",
+      "description": "Cheque Paid to Apple Inc",
+      "amount": 60000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Apple Inc",
+          "classification": "LIABILITY",
+          "increase_decrease": "Decrease",
+          "debit_credit": "DR",
+          "amount": 60000
+        },
+        {
+          "name": "Bank",
+          "classification": "ASSETES",
+          "increase_decrease": "Decrease",
+          "debit_credit": "CR",
+          "amount": 60000
+        }
+      ]
+    },
+    {
+      "sno": 20,
+      "date": "29-04-2025",
+      "description": "Salary For the Month Due But Not Paid ",
+      "amount": 18000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Salary",
+          "classification": "EXPENSES",
+          "increase/decrease": "Increase",
+          "debit/credit": "DR",
+          "amount": 18000
+        },
+        {
+          "name": "Cash",
+          "classification": "LIABILITY",
+          "increase/decrease": "Increase",
+          "debit/credit": "CR",
+          "amount": 18000
+        }
+      ]
+    },
+    {
+      "sno": 21,
+      "date": "30-04-2025",
+      "description": "Rent for the next Month Paid in Advance in cash",
+      "amount": 12000,
+      "number_of_aspects": 2,
+      "aspects": [
+        {
+          "name": "Rent paid in advance",
+          "classification": "ASSETES",
+          "increase_decrease": "Increase",
+          "debit_credit": "DR",
+          "amount": 12000
+        },
+        {
+          "name": "cash",
+          "classification": "ASSETES",
+          "increase_decrease": "Decrease",
+          "debit_credit": "CR",
+          "amount": 12000
+        }
+      ]
+    }
+    
+  ],
+  "closing_stock_balance": 40000.00
+}

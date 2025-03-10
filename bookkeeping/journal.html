@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Journal Entry</title>
+    <style>
+      body {
+        font-family: "Inter", serif;
+        margin: 0;
+        background-color: #f9f9f9;
+      }
+
+      .container {
+        margin: 0px;
+        background: white;
+        padding: 65px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+      }
+
+      p {
+        font-family: "Inter", serif;
+        font-size: 45px;
+      }
+
+      .back-btn {
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 50%;
+        width: 42px;
+        height: 42px;
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .description {
+        flex: 1;
+        margin-left: 10px;
+      }
+
+      .description p {
+        margin: 0;
+        color: #666;
+        margin-left: 5px;
+        font-size: 20px;
+      }
+
+      .journal-help {
+        background: #b1d851;
+        padding: 14px 22px;
+        border-radius: 25px;
+        color: #494848;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        font-family: "Inter", serif;
+      }
+
+      .table-container {
+        margin-top: 20px;
+        background: #eef2ef;
+        padding: 1px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 120px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 25px;
+        text-align: center;
+      }
+
+      th {
+        background: black;
+        color: #d0d0d0;
+        padding: 25px;
+      }
+
+      td input {
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #6e6e6f;
+        background: transparent;
+        width: 49%;
+        padding: 5px;
+        font-size: 20px;
+      }
+
+      .icon {
+        margin-left: 5px;
+        cursor: pointer;
+      }
+
+      .enter-button {
+        background: #141414;
+        padding: 14px 22px;
+        border-radius: 25px;
+        color: #f9f9f9;
+        border: none;
+        cursor: pointer;
+        font-size: 17px;
+        position: absolute;
+        bottom: 80px;
+        right: 80px;
+        font-family: "Inter", serif;
+      }
+
+      .view-doc {
+        position: absolute;
+        right: -30px;
+        top: 65%;
+        transform: rotate(270deg);
+        font-size: 16px;
+        text-decoration: underline;
+        cursor: pointer;
+        color: #141414;
+      }
+
+      .doc-arrow {
+        position: absolute;
+        right: 40px;
+        top: 65%;
+        font-size: 16px;
+        cursor: pointer;
+        color: #141414;
+      }
+
+      .calendar-icon {
+        position: absolute;
+        left: 195px;
+        /* top: 60%;
+            transform: translateY(-50%);
+            cursor: pointer; */
+        color: #666;
+      }
+
+      .image-viewer {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 50%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        transition: right 0.3s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .image-viewer img {
+        max-width: 90%;
+        max-height: 80%;
+        border-radius: 10px;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+      }
+
+      /* Modal Styling */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 10;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background-color: white;
+        padding: 70px;
+        border-radius: 10px;
+        width: 70%;
+        color: black;
+        position: relative;
+      }
+
+      .progress-bar {
+        display: flex;
+        align-items: center;
+        background: #b2d235;
+        padding: 25px;
+        border-radius: 20px;
+        width: 60%;
+        color: black;
+        font-weight: bold;
+        /* justify-content: space-between; */
+        margin-bottom: 20px;
+      }
+
+      /* .bar-mini {
+        display: flex;
+        align-items: center;
+        background: red;
+        padding: 15px;
+        border-radius: 20px;
+        width: 10%;
+        color: black;
+        font-weight: bold;
+        margin-bottom: 20px;
+        position: absolute;
+        top: 102px;
+        right: 90px;
+      } */
+
+      .progress-bar span {
+        flex-grow: 1;
+        text-align: center;
+      }
+
+      .progress-line {
+        width: 30%;
+        height: 8px;
+        background: linear-gradient(to right, #b2d235, #808080);
+        border-radius: 2px;
+        position: absolute;
+        top: 102px;
+        right: 109px;
+      }
+
+      .progress-circle {
+        background: gray;
+        color: white;
+        border-radius: 50%;
+        width: 65px;
+        height: 65px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        position: absolute;
+        top: 72px;
+        right: 64px;
+      }
+
+      .thead-modal {
+        background-color: #ebedee;
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+
+      .close {
+        font-size: 25px;
+        cursor: pointer;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        color: white;
+        background: #141414;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .input-wrapper {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .underline {
+        position: absolute;
+        bottom: 0;
+        width: 50%;
+        height: 1px;
+        background-color: transparent;
+      }
+
+      .next-btn {
+        background: #141414;
+        padding: 14px 28px;
+        border-radius: 25px;
+        color: #f9f9f9;
+        border: none;
+        cursor: pointer;
+        font-size: 17px;
+        position: absolute;
+        bottom: 40px;
+        right: 60px;
+        font-family: "Inter", serif;
+      }
+
+      .back-btn-modal {
+        font-size: 13px;
+        cursor: pointer;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        color: white;
+        background: black;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .back-btn-modal:hover {
+        background: #5a5a5a;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <p>Journal Entry</p>
+      <div class="header">
+        <span class="back-btn" onclick="goBack()"
+          ><i class="fas fa-chevron-left"></i
+        ></span>
+        <div class="description">
+          <p id="journal-description"></p>
+        </div>
+        <button class="journal-help" onclick="openModal()">Journal Help</button>
+
+        <div class="modal" id="helpModal">
+          <div class="modal-content" id="modalContent">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="progress-bar">
+              <span id="progressTitle"
+                >Aspect Identification & Classification</span
+              >
+            </div>
+            <!-- <div class="bar-mini"></div> -->
+            <div class="progress-line" id="progressStep"></div>
+            <div class="progress-circle" id="progressStep">2</div>
+            <div id="step1">
+              <p id="modal-description" style="font-size: 30px"></p>
+              <div class="table-container" style="background-color: white">
+                <table>
+                  <thead>
+                    <tr>
+                      <th style="background-color: white"></th>
+                      <th
+                        style="
+                          background-color: #ebedee;
+                          color: #494848;
+                          border-radius: 25px 0px 0px 25px;
+                        "
+                      >
+                        Name
+                      </th>
+                      <th style="background-color: #ebedee; color: #494848">
+                        Classification
+                      </th>
+                      <th
+                        style="
+                          background-color: #ebedee;
+                          color: #494848;
+                          border-radius: 0px 25px 25px 0px;
+                        "
+                      >
+                        Amount
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr style="background-color: white">
+                      <td
+                        style="
+                          background-color: white;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          padding: 5px;
+                        "
+                      ></td>
+                    </tr>
+                    <tr style="background-color: white">
+                      <td
+                        style="
+                          background-color: white;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          padding: 38px;
+                        "
+                      >
+                        Aspect
+                        <span
+                          style="
+                            background: #ebedee;
+                            color: black;
+                            border-radius: 50%;
+                            width: 35px;
+                            height: 35px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-left: 15px;
+                          "
+                        >
+                          01
+                        </span>
+                      </td>
+                      <td
+                        style="
+                          background-color: #434343;
+                          border-radius: 25px 0px 0px 0px;
+                        "
+                      >
+                        <input
+                          type="text"
+                          placeholder="eg. Salary"
+                          style="color: #d9d9d9"
+                        />
+                      </td>
+                      <td style="background-color: #434343">
+                        <input
+                          type="text"
+                          placeholder="eg. Expenditure"
+                          style="color: #d9d9d9"
+                        />
+                      </td>
+                      <td
+                        style="
+                          background-color: #434343;
+                          border-radius: 0px 25px 0px 0px;
+                        "
+                      >
+                        <input
+                          type="text"
+                          placeholder="eg. 5000"
+                          style="color: #d9d9d9; margin-right: 40px"
+                          
+                        />
+                      </td>
+                    </tr>
+                    <tr style="background-color: white">
+                      <td
+                        style="
+                          background-color: white;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                        "
+                      >
+                        Aspect
+                        <span
+                          style="
+                            background: #ebedee;
+                            color: black;
+                            border-radius: 50%;
+                            width: 35px;
+                            height: 35px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-left: 15px;
+                          "
+                        >
+                          02
+                        </span>
+                      </td>
+                      <td
+                        style="
+                          background-color: #434343;
+                          border-radius: 0px 0px 0px 25px;
+                        "
+                      >
+                        <input
+                          type="text"
+                          placeholder="eg. Cash"
+                          style="color: #d9d9d9"
+                        />
+                      </td>
+                      <td style="background-color: #434343">
+                        <input
+                          type="text"
+                          placeholder="eg. Asset"
+                          style="color: #d9d9d9"
+                        />
+                      </td>
+                      <td
+                        style="
+                          background-color: #434343;
+                          border-radius: 0px 0px 25px 0px;
+                        "
+                      >
+                        <input
+                          type="text"
+                          placeholder="eg. 5000"
+                          style="color: #d9d9d9"
+                        />
+                        <i
+                          class="fas fa-plus icon"
+                          onclick="addNewAspectRow(this)"
+                          style="
+                            font-size: 13px;
+                            border: 2px solid white;
+                            border-radius: 4px;
+                            padding: 4px;
+                            color: #6e6e6f;
+                            background-color: white;
+                            margin-left: 15px;
+                          "
+                        ></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <button class="next-btn" onclick="goToStep2()">Next</button>
+            </div>
+            <div id="step2" style="display: none">
+              <button class="back-btn-modal" onclick="goToStep1()">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <p id="modal-description-step2" style="font-size: 30px"></p>
+
+              <div class="table-container" style="background-color: white">
+                <table>
+                  <thead style="background-color: white">
+                    <tr>
+                      <th style="background-color: white"></th>
+                      <th style="background-color: white"></th>
+                      <th style="background-color: white"></th>
+                      <th style="background-color: white"></th>
+                      <!-- <th style="background-color: white"></th> -->
+                      <th
+                        style="
+                          background-color: #ebedee;
+                          color: #494848;
+                          border-radius: 25px 0px 0px 25px;
+                        "
+                      >
+                        Increase/Decrease
+                      </th>
+                      <th
+                        style="
+                          background-color: #ebedee;
+                          color: #494848;
+                          border-radius: 0px 25px 25px 0px;
+                        "
+                      >
+                        Debit/Credit
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td
+                        style="
+                          background-color: white;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          padding: 5px;
+                        "
+                      ></td>
+                    </tr>
+                    <tr>
+                      <td
+                        style="
+                          background-color: white;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          padding: 38px;
+                        "
+                      >
+                        Aspect
+                        <span
+                          style="
+                            background: #ebedee;
+                            color: black;
+                            border-radius: 50%;
+                            width: 35px;
+                            height: 35px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-left: 15px;
+                          "
+                        >
+                          01
+                        </span>
+                      </td>
+                      <td style="background-color: white">
+                        <input
+                          type="text"
+                          placeholder="Salary"
+                          style="color: black"
+                        />
+                      </td>
+                      <td style="background-color: white">
+                        <input
+                          type="text"
+                          placeholder="Expenditure"
+                          style="color: black"
+                        />
+                      </td>
+                      <td style="background-color: white">
+                        <input
+                          type="text"
+                          placeholder="5000"
+                          style="color: black"
+                        />
+                      </td>
+                      <!-- <td style="background-color: white"></td> -->
+                      <td
+                        style="
+                          background-color: #434343;
+                          border-radius: 10px 0px 0px 0px;
+                        "
+                      >
+                        <select>
+                          <option>Increase</option>
+                          <option>Decrease</option>
+                        </select>
+                      </td>
+                      <td
+                        style="
+                          background-color: #434343;
+                          border-radius: 0px 10px 0px 0px;
+                        "
+                      >
+                        <select>
+                          <option>Debit</option>
+                          <option>Credit</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        style="
+                          background-color: white;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          padding: 38px;
+                        "
+                      >
+                        Aspect
+                        <span
+                          style="
+                            background: #ebedee;
+                            color: black;
+                            border-radius: 50%;
+                            width: 35px;
+                            height: 35px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-left: 15px;
+                          "
+                        >
+                          02
+                        </span>
+                      </td>
+                      <td style="background-color: white">
+                        <input
+                          type="text"
+                          placeholder="Salary"
+                          style="color: black"
+                        />
+                      </td>
+                      <td style="background-color: white">
+                        <input
+                          type="text"
+                          placeholder="Expenditure"
+                          style="color: black"
+                        />
+                      </td>
+                      <td style="background-color: white">
+                        <input
+                          type="text"
+                          placeholder="5000"
+                          style="color: black"
+                        />
+                      </td>
+                      <!-- <td style="background-color: white"></td> -->
+                      <td
+                        style="
+                          background-color: #434343;
+                          border-radius: 0px 0px 0px 10px;
+                        "
+                      >
+                        <select>
+                          <option>Increase</option>
+                          <option>Decrease</option>
+                        </select>
+                      </td>
+                      <td
+                        style="
+                          background-color: #434343;
+                          border-radius: 0px 0px 10px 0px;
+                        "
+                      >
+                        <select>
+                          <option>Debit</option>
+                          <option>Credit</option>
+                        </select>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <button class="next-btn">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th style="border-radius: 10px 0px 0px 10px">Date</th>
+              <th>Particulars</th>
+              <th>Debit Amount</th>
+              <th style="border-radius: 0px 10px 10px 0px">Credit Amount</th>
+            </tr>
+          </thead>
+          <tbody id="journalTableBody">
+            <tr>
+              <td style="width: 25%">
+                <input type="date" placeholder="DD/MM/YY" />
+              </td>
+              <td style="width: 20%">
+                <input type="text" placeholder="eg. Cash" />
+                <i
+                  class="fas fa-plus icon"
+                  onclick="addNewRow(this)"
+                  style="
+                    font-size: 12px;
+                    border: 2px solid #6e6e6f;
+                    border-radius: 4px;
+                    padding: 4px;
+                    color: #6e6e6f;
+                  "
+                ></i>
+              </td>
+              <td style="width: 20%">
+                <input type="text" placeholder="5,000" />
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td style="text-align: end">
+                <input type="text" placeholder="eg. To sales" />
+                <i
+                  class="fas fa-plus icon"
+                  onclick="addNewRow(this)"
+                  style="
+                    font-size: 12px;
+                    border: 2px solid #6e6e6f;
+                    border-radius: 4px;
+                    padding: 4px;
+                    color: #6e6e6f;
+                  "
+                ></i>
+              </td>
+              <td></td>
+              <td style="width: 20%">
+                <input type="text" placeholder="5,000" />
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><input type="text" placeholder="eg. Narration" /></td>
+              <td></td>
+              <td><button class="enter-button">Enter Journal</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="doc-arrow"><i class="fas fa-chevron-left"></i></div>
+      <div class="view-doc" onclick="openImageViewer()">
+        <span> View Document </span>
+      </div>
+      <div class="image-viewer" id="imageViewer">
+        <span class="close-btn" onclick="closeImageViewer()">&times;</span>
+        <img src="assets/bankstatement.jpg" alt="Journal Document" />
+      </div>
+    </div>
+
+    <script>
+      window.onload = function () {
+        var description = localStorage.getItem("journalDescription");
+        if (description) {
+          document.getElementById("journal-description").innerText =
+            description;
+        }
+
+        document.getElementById("helpModal").style.display = "none";
+
+        var modalDescription = localStorage.getItem("modalDescription");
+        if (modalDescription) {
+          document.getElementById("modal-description").innerText =
+            modalDescription;
+          document.getElementById("modal-description-step2").innerText =
+            modalDescription;
+        }
+      };
+
+      function updateModalDescription(step, text) {
+        if (step === 1) {
+          document.getElementById("modal-description").textContent = text;
+        } else if (step === 2) {
+          document.getElementById("modal-description-step2").textContent = text;
+        }
+      }
+
+      function openModal() {
+        var description = document.getElementById(
+          "journal-description"
+        ).innerText;
+        localStorage.setItem("modalDescription", description); // Store modal description
+        document.getElementById("modal-description").innerText = description; // Update modal content
+        document.getElementById("helpModal").style.display = "flex"; // Show modal
+      }
+
+      function closeModal() {
+        document.getElementById("helpModal").style.display = "none"; // Hide modal
+      }
+
+      function goBack() {
+        window.location.href = "index.html";
+      }
+
+      function openImageViewer() {
+        document.getElementById("imageViewer").style.right = "0";
+      }
+
+      function closeImageViewer() {
+        document.getElementById("imageViewer").style.right = "-100%";
+      }
+
+      function openDatePicker() {
+        document.getElementById("dateInput").showPicker();
+      }
+
+      function formatDate(input) {
+        if (input.value) {
+          let date = new Date(input.value);
+          let day = String(date.getDate()).padStart(2, "0");
+          let month = String(date.getMonth() + 1).padStart(2, "0");
+          let year = date.getFullYear();
+          input.type = "text";
+          input.value = `${day}/${month}/${year}`;
+        }
+      }
+
+      function addNewRow(element) {
+        const row = element.closest("tr");
+        const newRow = row.cloneNode(true);
+
+        // Clear input values in the new row
+        newRow.querySelectorAll("input").forEach((input) => (input.value = ""));
+
+        const firstCell = newRow.cells[0];
+        if (firstCell) {
+          firstCell.innerHTML = "";
+        }
+
+        // Remove existing minus icon before adding a new one
+        const existingMinus = newRow.querySelector(".fa-minus");
+        if (existingMinus) {
+          existingMinus.remove();
+        }
+
+        const minusIcon = document.createElement("i");
+        minusIcon.className = "fas fa-minus icon";
+        minusIcon.style =
+          "font-size: 12px; border: 2px solid #ff0000; border-radius: 4px; padding: 4px; color: #ff0000; margin-right: -35px;";
+        minusIcon.onclick = function () {
+          removeRow(minusIcon);
+        };
+        newRow.cells[1].appendChild(minusIcon);
+
+        row.parentNode.insertBefore(newRow, row.nextSibling);
+      }
+
+      function removeRow(element) {
+        const row = element.closest("tr");
+        row.parentNode.removeChild(row);
+      }
+
+      //New Aspect Row
+
+      function addNewAspectRow(element) {
+        const currentRow = element.closest("tr");
+        const tbody = currentRow.parentNode;
+
+        // Clone the current row
+        const newRow = currentRow.cloneNode(true);
+
+        // Clear input values in the new row
+        newRow.querySelectorAll("input").forEach((input) => (input.value = ""));
+
+        // Find the last aspect number and increment it
+        let lastRow = tbody.querySelector("tr:last-child");
+        let lastNumberSpan = lastRow.querySelector("span");
+
+        if (lastNumberSpan) {
+          let currentNumber = parseInt(lastNumberSpan.innerText, 10);
+          let newNumber = currentNumber + 1;
+
+          // Format the number as two digits (e.g., "01", "02", ..., "10")
+          let formattedNumber = newNumber.toString().padStart(2, "0");
+
+          // Update the new row's aspect number
+          let newAspectNumberSpan = newRow.querySelector("span");
+          newAspectNumberSpan.innerText = formattedNumber;
+        }
+
+        // Remove border-radius from all previous rows
+        tbody.querySelectorAll("tr").forEach((row) => {
+          row.querySelectorAll("td").forEach((td) => {
+            td.style.borderRadius = "0px";
+          });
+        });
+
+        // Remove existing icons from the new row
+        newRow.querySelectorAll(".icon").forEach((icon) => icon.remove());
+
+        // Create a "plus" icon for adding a new row
+        let plusIcon = document.createElement("i");
+        plusIcon.className = "fas fa-plus icon";
+        plusIcon.style = `
+        font-size: 13px;
+                            border: 2px solid white;
+                            border-radius: 4px;
+                            padding: 4px;
+                            color: #6e6e6f;
+                            background-color: white;
+                            margin-left: 15px;
+    `;
+        plusIcon.onclick = function () {
+          addNewAspectRow(plusIcon);
+        };
+
+        // Create a "minus" icon for removing the row
+        let minusIcon = document.createElement("i");
+        minusIcon.className = "fas fa-minus icon";
+        minusIcon.style = `
+        font-size: 12px;
+        border: 2px solid #ff0000;
+        border-radius: 4px;
+        padding: 4px;
+        color: #ff0000;
+        margin-left: 10px;
+        cursor: pointer;
+    `;
+        minusIcon.onclick = function () {
+          removeAspectRow(minusIcon);
+        };
+
+        // Append the plus icon first, then the minus icon to the last cell of the new row
+        let lastCell = newRow.cells[newRow.cells.length - 1];
+        lastCell.appendChild(plusIcon);
+        lastCell.appendChild(minusIcon);
+
+        // Append the new row to the table
+        tbody.appendChild(newRow);
+
+        // Ensure only the last row has border-radius
+        updateLastRowBorderRadius(tbody);
+      }
+
+      function removeAspectRow(element) {
+        const row = element.closest("tr"); // Find the correct row
+        const tbody = row.parentNode;
+
+        row.remove(); // Remove the selected row
+
+        // Reassign aspect numbers for remaining rows
+        let aspectRows = tbody.querySelectorAll("tr");
+        aspectRows.forEach((row, index) => {
+          let span = row.querySelector("td span"); // Find the aspect number span
+          if (span) {
+            let newNumber = (index + 1).toString().padStart(2, "0");
+            span.innerText = newNumber;
+          }
+        });
+
+        // Ensure only the last row has border-radius
+        updateLastRowBorderRadius(tbody);
+      }
+
+      function updateLastRowBorderRadius(tbody) {
+        let rows = tbody.querySelectorAll("tr");
+
+        // Reset border-radius for all rows
+        rows.forEach((row) => {
+          row.querySelectorAll("td").forEach((td) => {
+            td.style.borderRadius = "0px";
+          });
+        });
+
+        // Apply border-radius only to the last row
+        if (rows.length > 0) {
+          let lastRow = rows[rows.length - 1];
+          lastRow.cells[1].style.borderRadius = "0px 0px 0px 25px"; // Left side
+          lastRow.cells[3].style.borderRadius = "0px 0px 25px 0px"; // Right side
+        }
+      }
+
+      function goToStep2() {
+        document.getElementById("step2").style.display = "block";
+        document.getElementById("step1").style.display = "none";
+      }
+
+      function goToStep1() {
+        document.getElementById("step2").style.display = "none";
+        document.getElementById("step1").style.display = "block";
+      }
+    </script>
+  </body>
+</html>

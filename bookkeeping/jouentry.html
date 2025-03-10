@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journal Entry</title>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background: #111;
+        color: white;
+      }
+      .enter-button {
+        background: black;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      .icon {
+        font-size: 18px;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Particulars</th>
+            <th>Debit Amount</th>
+            <th>Credit Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="date" /></td>
+            <td><input type="text" placeholder="Cash" /></td>
+            <td><input type="number" id="debitAmount" placeholder="5000" /></td>
+            <td>
+              <input type="number" id="creditAmount" placeholder="5000" />
+              <span id="iconContainer"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="enter-button" onclick="validateJournal()">
+        Enter Journal
+      </button>
+    </div>
+
+    <script>
+      function validateJournal() {
+        let debitAmount = document.getElementById("debitAmount").value;
+        let creditAmount = document.getElementById("creditAmount").value;
+        let iconContainer = document.getElementById("iconContainer");
+
+        // Clear previous icon
+        iconContainer.innerHTML = "";
+
+        let icon = document.createElement("i");
+
+        if (debitAmount === creditAmount) {
+          icon.className = "fas fa-check-circle";
+          icon.style.color = "green";
+        } else {
+          icon.className = "fas fa-times-circle";
+          icon.style.color = "red";
+        }
+
+        icon.classList.add("icon");
+        iconContainer.appendChild(icon);
+      }
+    </script>
+  </body>
+</html>

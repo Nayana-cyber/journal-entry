@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Keeping Tool</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f9f9f9;
+      }
+
+      .container {
+        margin: 0px;
+        background: white;
+        padding: 45px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      h2 {
+        font-size: 35px;
+        font-family: "Inter", serif;
+      }
+
+      .table-row {
+        border-bottom: 1px solid #ddd;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .sno,
+      .date {
+        flex: 1;
+        color: #666;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .description {
+        flex: 3;
+        color: #666;
+        display: flex;
+        justify-content: start;
+        margin-left: 25px;
+      }
+
+      .amount {
+        flex: 1;
+        color: #000;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .buttons {
+        flex: 2;
+        display: flex;
+        gap: 20px;
+        color: #888;
+        justify-content: center;
+      }
+
+      .journal-btn {
+        background-color: #b1d851;
+        color: black;
+        padding: 14px 22px;
+        border: none;
+        border-radius: 25px;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .ledger-btn,
+      .trailbal-btn,
+      .finstat-btn {
+        background-color: #a4a3a3;
+        color: white;
+        padding: 14px 22px;
+        border: none;
+        border-radius: 25px;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .other-info {
+        flex: 2;
+        color: #666;
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Transactions</h2>
+      <div id="transactions-container"></div>
+    </div>
+
+    <script>
+      function saveDescription(description) {
+        localStorage.setItem("journalDescription", description);
+        window.location.href = "journal.html"; // Redirect to journal.html
+      }
+
+      function formatDate(dateString) {
+        let parts = dateString.split("-");
+        return `${parts[0]}.${parts[1]}.${parts[2]}`;
+      }
+
+      // Load transactions dynamically
+      fetch("transactions.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const transactionsContainer = document.getElementById(
+            "transactions-container"
+          );
+          data.transactions.forEach((transaction) => {
+            const row = document.createElement("div");
+            row.className = "table-row";
+            row.innerHTML = `
+              <div class="sno">${transaction.sno}.</div>
+              <div class="date">${transaction.date}</div>
+              <div class="description">
+                <p><strong>${transaction.description}</strong></p>
+              </div>
+              <div class="amount">₹${transaction.amount.toLocaleString()}</div>
+              <div class="buttons">
+                <button class="journal-btn" onclick="saveDescription('${
+                  transaction.description
+                }')">
+                  Journal Entry
+                </button>
+              </div>
+              <div class="other-info">
+                <button class="ledger-btn" onclick="redirectToLedger('${
+                  transaction.description
+                }')">Ledger Posting</button>
+              </div>
+              <div class="other-info">
+                <button class="trailbal-btn">Trail Balance</button>
+              </div>
+              <div class="other-info">
+                <button class="finstat-btn">Financial Statement</button>
+              </div>
+            `;
+            transactionsContainer.appendChild(row);
+          });
+        })
+        .catch((error) => console.error("Error loading transactions:", error));
+
+      function redirectToLedger(description) {
+        localStorage.setItem("ledgerDescription", description);
+        window.location.href = "ledger.html"; // Redirect to ledger.html
+      }
+    </script>
+  </body>
+</html>
