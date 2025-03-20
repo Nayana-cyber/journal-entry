@@ -491,10 +491,10 @@ td input {
                             autocomplete="off"
                           />
                           <datalist id="classification-options">
-                            <option value="Assets">
-                            <option value="Liability">
-                            <option value="Expenses">
-                            <option value="Income">
+                            <option value="ASSETS">
+                            <option value="LIABILITY">
+                            <option value="EXPENSES">
+                            <option value="INCOME">
                           </datalist>
                           <div style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); pointer-events: none;">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -565,14 +565,14 @@ td input {
                             autocomplete="off"
                           />
                           <datalist id="classification-options">
-                            <option value="Assets">
-                              <option value="Liability">
-                              <option value="Expenses">
-                              <option value="Income">
+                            <option value="ASSETS">
+                            <option value="LIABILITY">
+                            <option value="EXPENSES">
+                            <option value="INCOME">
                           </datalist>
                           <div style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); pointer-events: none;">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            
+                             
                             </svg>
                           </div>
                         </div>
@@ -725,7 +725,7 @@ td input {
                           </div>
                         </div>
                       </td>
-                      <td style="background-color: #434343; position: relative;">
+                                           <td style="background-color: #434343; position: relative;">
                         <div style="position: relative; display: flex; align-items: center;">
                           <input
                             type="text"
@@ -776,7 +776,7 @@ td input {
                       <td style="background-color: white">
                         <input
                           type="text"
-                          placeholder="Salary"
+                          x`="Salary"
                           style="color: black"
                         />
                       </td>
@@ -826,7 +826,7 @@ td input {
                           <datalist id="classiffication-option">
                             <option value="Debit">
                             <option value="Credit">
-
+                            
                           </datalist>
                           <div style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); pointer-events: none;">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1144,12 +1144,75 @@ function updateLastRowBorderRadius(tbody) {
     lastRow.cells[3].style.borderRadius = "0px 0px 25px 0px"; // Right side
   }
 }
-function goToStep2() {
-  console.log("goToStep2 function called");
 
+function goToStep2() {
+  transferAspectData();
   document.getElementById("step2").style.display = "block";
   document.getElementById("step1").style.display = "none";
-  console.log("Step transition complete - Step 2 should now be visible");
+}
+
+
+function transferAspectData() {
+  // Get all aspect rows from Step 1
+  const step1Table = document.querySelector("#step1 .table-container table tbody");
+  const step2Table = document.querySelector("#step2 .table-container table tbody");
+  
+  if (!step1Table || !step2Table) {
+    console.error("Could not find Step 1 or Step 2 tables");
+    return;
+  }
+  
+  // Get aspect rows from Step 1 (starting from the second row, skipping the empty first row)
+  const step1Rows = step1Table.querySelectorAll("tr");
+  // Get aspect rows from Step 2 (starting from the second row, skipping the empty first row)
+  const step2Rows = step2Table.querySelectorAll("tr");
+  
+  // Start from index 1 to skip the empty spacer row at the top of both tables
+  for (let i = 1; i < step1Rows.length; i++) {
+    // Skip if it's just the empty first row
+    if (i >= step1Rows.length || i >= step2Rows.length) continue;
+    
+    // Get values from Step 1
+    const nameInput = step1Rows[i].querySelector('input[placeholder*="eg."]');
+    const classificationInput = step1Rows[i].querySelector('input[list="classification-options"]');
+    const amountInput = step1Rows[i].querySelector('input[placeholder*="5000"]');
+    
+    // Get corresponding inputs in Step 2
+    const step2NameInput = step2Rows[i].querySelector('input[placeholder="Salary"]');
+    const step2ClassInput = step2Rows[i].querySelector('input[placeholder="Expenditure"]');
+    const step2AmountInput = step2Rows[i].querySelector('input[placeholder="5000"]');
+    const step2IncDecInput = step2Rows[i].querySelector('input[list="classification-option"]');
+    const step2DebitCreditInput = step2Rows[i].querySelector('input[list="classiffication-option"]');
+    
+    // Transfer values if inputs exist
+    if (nameInput && step2NameInput) {
+      step2NameInput.value = nameInput.value;
+    }
+    
+    if (classificationInput && step2ClassInput) {
+      step2ClassInput.value = classificationInput.value;
+    }
+    
+    if (amountInput && step2AmountInput) {
+      step2AmountInput.value = amountInput.value;
+    }
+    
+    // Determine Increase/Decrease and Debit/Credit based on accounting rules
+    if (classificationInput && step2IncDecInput) {
+      // Default to Increase (can be modified based on your business logic)
+      step2IncDecInput.value = "Increase";
+    }
+    
+    if (classificationInput && step2DebitCreditInput) {
+      // Determine Debit/Credit based on the account classification
+      const classification = classificationInput.value.toUpperCase();
+      if (classification === "ASSETS" || classification === "EXPENSES") {
+        step2DebitCreditInput.value = "Debit";
+      } else if (classification === "LIABILITY" || classification === "INCOME") {
+        step2DebitCreditInput.value = "Credit";
+      }
+    }
+  }
 }
 
 
@@ -1158,7 +1221,7 @@ function goToStep1() {
   document.getElementById("step1").style.display = "block";
 }
 function validateJournalEntry() {
-    // Get transactions data 
+    // Get transactions data
     const transactionsData = {
         "transactions": [
         {
@@ -1647,7 +1710,7 @@ function validateJournalEntry() {
         ]
         };
     
-  // Get values from the form
+  // Get values from the form 
   const date = document.querySelector('input[type="date"]').value;
   const formattedDate = formatDateForComparison(date);
   
@@ -1663,8 +1726,8 @@ function validateJournalEntry() {
   const creditAmount = creditInput ? parseFloat(creditInput.value.replace(/,/g, '')) : 0;
   
   // Check if debit equals credit
-  if (debitAmount !== creditAmount) {         
-    showToast("Error:Would you like to ", "error");
+  if (debitAmount !== creditAmount) {
+    showToast("Error: Debit and credit amounts must be equal", "error");
     return false;
   }
   
@@ -1673,32 +1736,20 @@ function validateJournalEntry() {
     transactionsData.transactions,
     formattedDate,
     particulars,
-    debitAmount    
-  );            
+    debitAmount
+  );
   
   if (matchingTransaction) {
-    const transactionAspectNames = matchingTransaction.aspects.map(aspect => aspect.name.toLowerCase());
-    const mismatchedParticulars = particulars.filter(p => 
-      !transactionAspectNames.includes(p.toLowerCase())
-    );
-    
-    if (mismatchedParticulars.length > 0) {
-      showToast("Would you like to ", "error");
-      return false;
-    }
-    showToast("Congratulations! You've Succesfully Completed  ", "success");
-    setTimeout(() => {                    
+    showToast("Congratulations! Goto Journal list", "success");
+    setTimeout(() => {
       window.location.href = "index.html";
-
-    }, 10000);                    
+    }, 2000);
     return true;
-  } else {                                                                          
-    showToast("Would you like to ", "error");
+  } else {
+    showToast("Would you like to Try again or go to Journal help", "error");
     return false;
   }
-
 }
-
 
 // Helper function to format date for comparison
 function formatDateForComparison(dateStr) {
@@ -1709,17 +1760,17 @@ function formatDateForComparison(dateStr) {
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const year = date.getFullYear();
   
-  return `${day}-${month}-${year}`; 
-}     
-                                                                           
+  return `${day}-${month}-${year}`;
+}
+
 // Function to find matching transaction in the JSON data
 function findMatchingTransaction(transactions, date, particulars, amount) {
-  return transactions.find(transaction => {                          
-    // Check if date matches                    
+  return transactions.find(transaction => {
+    // Check if date matches
     if (transaction.date !== date) return false;
     
     // Check if amount matches
-    if (transaction.amount !== amount) return false;         
+    if (transaction.amount !== amount) return false;
     
     // Check if particulars match (account names)
     const transactionAspectNames = transaction.aspects.map(aspect => aspect.name.toLowerCase());
@@ -1757,46 +1808,9 @@ function showToast(message, type) {
     font-size: 17px;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
   `;
   
-  // Create a span for the message
-  const messageSpan = document.createElement('span');
-  messageSpan.textContent = message;
-
-  // Append the message span to the toast
-  toast.innerHTML = '';
-  toast.appendChild(messageSpan);
-
-  // Add links based on the type of toast
-  if (type === 'success') {
-    const journalListLink = document.createElement('a');
-    journalListLink.textContent = 'Go to Journal List';
-    journalListLink.href = 'index.html';
-    journalListLink.style.color = 'white';
-    journalListLink.style.textDecoration = 'underline';
-    journalListLink.style.cursor = 'pointer';
-    toast.appendChild(journalListLink);
-  } else if (type === 'error') {
-    const tryAgainLink = document.createElement('a');
-    tryAgainLink.textContent = 'Try Again';
-    tryAgainLink.style.color = 'white';
-    tryAgainLink.style.textDecoration = 'underline';
-    tryAgainLink.style.cursor = 'pointer';
-    tryAgainLink.onclick = () => location.reload();
-    toast.appendChild(tryAgainLink);
-
-    const journalHelpLink = document.createElement('a');
-    journalHelpLink.textContent = 'Journal Help';
-    journalHelpLink.style.color = 'white';
-    journalHelpLink.style.textDecoration = 'underline';
-    journalHelpLink.style.cursor = 'pointer';
-    journalHelpLink.onclick = openModal;
-    toast.appendChild(journalHelpLink);
-  }                                 
+  toast.textContent = message;
   
   // Show toast
   toast.style.display = 'block';
@@ -1805,8 +1819,7 @@ function showToast(message, type) {
   setTimeout(() => {
     toast.style.display = 'none';
   }, 3000);
-}       
-                                                   
+}
 
 // Add event listener to the Enter Journal button
 document.addEventListener('DOMContentLoaded', function() {
@@ -1815,62 +1828,6 @@ document.addEventListener('DOMContentLoaded', function() {
     enterButton.addEventListener('click', validateJournalEntry);
   }
 });
-
-// Function to transfer data from Step 1 to Step 2
-function transferDataToStep2() {
-  const description = document.getElementById("journal-description").innerText;
-  document.getElementById("modal-description-step2").innerText = description;
-  // Capture data for Aspect 1 in Step 1
-  const aspect1Name = document.querySelector('#step1 input[placeholder="eg. Salary"]').value;
-  const aspect1Classification = document.querySelector('#step1 input[placeholder="eg. Expenditure"]').value;
-  const aspect1Amount = document.querySelector('#step1 input[placeholder="eg. 5000"]').value;
-  
-
-  // Capture data for Aspect 2 in Step 1
-  const aspect2Name = document.querySelector('#step1 input[placeholder="eg. Cash"]').value;
-  const aspect2Classification = document.querySelector('#step1 input[placeholder="eg. ASSETS"]').value;
-  const aspect2Amount = document.querySelector('#step1 input[placeholder="eg. 5000"]:last-of-type').value;
-
-  // Populate data for Aspect 1 in Step 2
-  const step2Aspect1Name = document.querySelector('#step2 tr:nth-child(2) input[placeholder="Salary"]');
-  const step2Aspect1Classification = document.querySelector('#step2 tr:nth-child(2) input[placeholder="Expenditure"]');
-  const step2Aspect1Amount = document.querySelector('#step2 tr:nth-child(2) input[placeholder="5000"]');
-
-  step2Aspect1Name.value = aspect1Name;
-  step2Aspect1Classification.value = aspect1Classification;
-  step2Aspect1Amount.value = aspect1Amount;
-
-  // Populate data for Aspect 2 in Step 2
-  const step2Aspect2Name = document.querySelector('#step2 tr:nth-child(3) input[placeholder="Salary"]');
-  const step2Aspect2Classification = document.querySelector('#step2 tr:nth-child(3) input[placeholder="Expenditure"]');
-  const step2Aspect2Amount = document.querySelector('#step2 tr:nth-child(3) input[placeholder="5000"]');
-
-  step2Aspect2Name.value = aspect2Name;
-  step2Aspect2Classification.value = aspect2Classification;
-  step2Aspect2Amount.value = aspect2Amount;
-}
-
-// Function to go to Step 2
-function goToStep2() {
-  // Transfer data from Step 1 to Step 2
-  transferDataToStep2();
-
-  const description = document.getElementById("journal-description").innerText;
-  updateModalDescription(2, description);
-
-  // Hide Step 1 and show Step 2
-  document.getElementById("step1").style.display = "none";
-  document.getElementById("step2").style.display = "block";
-}
-
-// Function to go back to Step 1
-function goToStep1() {
-  // Hide Step 2 and show Step 1
-  document.getElementById("step2").style.display = "none";
-  document.getElementById("step1").style.display = "block";
-}
-
-
     </script>
   </body>
 </html>

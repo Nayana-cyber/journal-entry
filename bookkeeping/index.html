@@ -10,7 +10,7 @@
     />
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font-family: "Inter", sans-serif;
         margin: 0;
         background-color: #f9f9f9;
       }
@@ -81,9 +81,7 @@
         cursor: pointer;
       }
 
-      .ledger-btn,
-      .trailbal-btn,
-      .finstat-btn {
+      .ledger-btn {
         background-color: #a4a3a3;
         color: white;
         padding: 14px 22px;
@@ -94,19 +92,37 @@
         cursor: pointer;
       }
 
-      .other-info {
-        flex: 2;
-        color: #666;
+      .bottom-buttons {
         display: flex;
         justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+
+      }
+
+      .trailbal-btn,
+      .finstat-btn {
+        background-color: #888;
+        color: white;
+        padding: 20px 50px;
+        border: none;
+        border-radius: 20px;
+        font-size: 20px;
+        cursor: pointer;
+        width: 3000px;
       }
     </style>
   </head>
-
   <body>
     <div class="container">
       <h2>Transactions</h2>
       <div id="transactions-container"></div>
+
+      <!-- Bottom buttons section -->
+      <div class="bottom-buttons">
+        <button class="trailbal-btn">Trial Balance</button>
+        <button class="finstat-btn">Financial Statement</button>
+      </div>
     </div>
 
     <script>
@@ -115,9 +131,9 @@
         window.location.href = "journal.html"; // Redirect to journal.html
       }
 
-      function formatDate(dateString) {
-        let parts = dateString.split("-");
-        return `${parts[0]}.${parts[1]}.${parts[2]}`;
+      function redirectToLedger(description) {
+        localStorage.setItem("ledgerDescription", description);
+        window.location.href = "ledger.html"; // Redirect to ledger.html
       }
 
       // Load transactions dynamically
@@ -138,22 +154,12 @@
               </div>
               <div class="amount">₹${transaction.amount.toLocaleString()}</div>
               <div class="buttons">
-                <button class="journal-btn" onclick="saveDescription('${
-                  transaction.description
-                }')">
+                <button class="journal-btn" onclick="saveDescription('${transaction.description}  &nbsp; Date  ${transaction.date} : &nbsp; Amount : ${transaction.amount}')">
                   Journal Entry
                 </button>
-              </div>
-              <div class="other-info">
-                <button class="ledger-btn" onclick="redirectToLedger('${
-                  transaction.description
-                }')">Ledger Posting</button>
-              </div>
-              <div class="other-info">
-                <button class="trailbal-btn">Trail Balance</button>
-              </div>
-              <div class="other-info">
-                <button class="finstat-btn">Financial Statement</button>
+                <button class="ledger-btn" onclick="redirectToLedger('${transaction.description}')">
+                  Ledger Posting
+                </button>
               </div>
             `;
             transactionsContainer.appendChild(row);
@@ -161,10 +167,7 @@
         })
         .catch((error) => console.error("Error loading transactions:", error));
 
-      function redirectToLedger(description) {
-        localStorage.setItem("ledgerDescription", description);
-        window.location.href = "ledger.html"; // Redirect to ledger.html
-      }
+    
     </script>
   </body>
 </html>

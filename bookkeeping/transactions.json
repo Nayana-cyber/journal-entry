@@ -9,16 +9,16 @@
       "aspects": [
         {
           "name": "Cash",
-          "classification": "ASSETES",
-          "increase_decrease": "Increase",
-          "debit_credit": "DR",
+          "classification": "ASSETS",
+          "increase/decrease": "Increase",
+          "debit/credit": "DR",
           "amount": 100000
         },
         {
           "name": "Henry Capital",
           "classification": "LIABILITY",
-          "increase_decrease": "Increase",
-          "debit_credit": "CR",
+          "increase/decrease": "Increase",      
+          "debit/credit": "CR",
           "amount": 100000
         }
       ]
@@ -32,14 +32,14 @@
       "aspects": [
         {
           "name": "Bank",
-          "classification": "ASSETES",
+          "classification": "ASSETS",
           "increase/decrease": "Increase",
           "debit/credit": "DR",
           "amount": 60000
         },
         {
           "name": "Cash",
-          "classification": "ASSETES",
+          "classification": "ASSETS",
           "increase/decrease": "Decrease",
           "debit/credit": "CR",
           "amount": 60000
@@ -56,15 +56,15 @@
         {
           "name": "Purchase",
           "classification": "EXPENSES",
-          "increase_decrease": "Increase",
-          "debit_credit": "DR",
+          "increase/decrease": "Increase",
+          "debit/credit": "DR",
           "amount": 30000
         },
         {
           "name": "Cash",
-          "classification": "ASSETES",
-          "increase_decrease": "Decrease",
-          "debit_credit": "CR",
+          "classification": "ASSETS",
+          "increase/decrease": "Decrease",
+          "debit/credit": "CR",
           "amount": 30000
         }
       ]
@@ -85,7 +85,7 @@
         },
         {
           "name": "Cash",
-          "classification": "ASSETES",
+          "classification": "ASSETS",
           "increase/decrease": "Decrease",
           "debit/credit": "CR",
           "amount": 2000
@@ -101,16 +101,16 @@
       "aspects": [
         {
           "name": "Cash",
-          "classification": "ASSETES",
-          "increase_decrease": "Increase",
-          "debit_credit": "DR",
+          "classification": "ASSETS",
+          "increase/decrease": "Increase",
+          "debit/credit": "DR",
           "amount": 36000
         },
         {
           "name": "Sales",
           "classification": "INCOME",
-          "increase_decrease": "Increase",
-          "debit_credit": "CR",
+          "increase/decrease": "Increase",
+          "debit/credit": "CR",
           "amount": 36000
         }
       ]
@@ -148,14 +148,14 @@
         {
           "name": "Rent",
           "classification": "EXPENSES",
-          "increase_decrease": "Increase",
+          "increase/decrease": "Increase",
           "debit_credit": "DR",
           "amount": 12000
         },
         {
           "name": "Cash",
-          "classification": "ASSETES",
-          "increase_decrease": "Decrease",
+          "classification": "ASSETS",
+          "increase/decrease": "Decrease",
           "debit_credit": "CR",
           "amount": 12000
         }
@@ -177,7 +177,7 @@
         },
         {
           "name": "Bank",
-          "classification": "ASSETES",
+          "classification": "ASSETS",
           "increase/decrease": "Decrease",
           "debit/credit": "CR",
           "amount": 50000
@@ -193,15 +193,15 @@
       "aspects": [
         {
           "name": "Ava",
-          "classification": "ASSETES",
-          "increase_decrease": "Increase",
+          "classification": "ASSETS",
+          "increase/decrease": "Increase",
           "debit_credit": "DR",
           "amount": 80000
         },
         {
           "name": "Sales",
           "classification": "INCOME",
-          "increase_decrease": "Increase",
+          "increase/decrease": "Increase",
           "debit_credit": "CR",
           "amount": 80000
         }
@@ -215,7 +215,7 @@
       "number_of_aspects": 2,
       "aspects": [
         {
-          "name": "Telephoen Bill",
+          "name": "Telephone Bill",
           "classification": "EXPENSES",
           "increase/decrease": "Increase",
           "debit/credit": "DR",
@@ -223,7 +223,7 @@
         },
         {
           "name": "Bank",
-          "classification": "ASSETES",
+          "classification": "ASSETS",
           "increase/decrease": "Decrease",
           "debit/credit": "CR",
           "amount": 1000
@@ -239,15 +239,15 @@
       "aspects": [
         {
           "name": "Bank",
-          "classification": "ASSETES",
-          "increase_decrease": "Increase",
+          "classification": "ASSETS",
+          "increase/decrease": "Increase",
           "debit_credit": "DR",
           "amount": 80000
         },
         {
           "name": "Ava",
-          "classification": "ASSETES",
-          "increase_decrease": "Decrease",
+          "classification": "ASSETS",
+          "increase/decrease": "Decrease",
           "debit_credit": "CR",
           "amount": 80000
         }
@@ -286,14 +286,14 @@
         {
           "name": "Apple Inc",
           "classification": "LIABILITY",
-          "increase_decrease": "Decrease",
+          "increase/decrease": "Decrease",
           "debit_credit": "DR",
           "amount": 5000
         },
         {
           "name": "Purchase Return",
           "classification": "INCOME",
-          "increase_decrease": "Increase",
+          "increase/decrease": "Increase",
           "debit_credit": "CR",
           "amount": 5000
         }
@@ -331,15 +331,15 @@
       "aspects": [
         {
           "name": "Samsung Ltd",
-          "classification": "ASSETES",
-          "increase_decrease": "Increase",
+          "classification": "ASSETS",
+          "increase/decrease": "Increase",
           "debit_credit": "DR",
           "amount": 120000
         },
         {
           "name": "Sales",
           "classification": "INCOME",
-          "increase_decrease": "Increase",
+          "increase/decrease": "Increase",
           "debit_credit": "CR",
           "amount": 120000
         }
@@ -355,14 +355,14 @@
         {
           "name": "Sales Return",
           "classification": "EXPENSES",
-          "increase_decrease": "Increase",
+          "increase/decrease": "Increase",
           "debit_credit": "DR",
           "amount": 10000
         },
         {
           "name": "Samsung Ltd",
-          "classification": "ASSETES",
-          "increase_decrease": "Decrease", 
+          "classification": "ASSETS",
+          "increase/decrease": "Decrease", 
           "debit_credit": "CR",
           "amount": 10000
         }
@@ -384,7 +384,7 @@
         },
         {
           "name": "Samsung Ltd",
-          "classification": "ASSETES",
+          "classification": "ASSETS",
           "increase/decrease": "Decrease",
           "debit/credit": "CR",
           "amount": 10000
@@ -400,16 +400,16 @@
       "aspects": [
         {
           "name": "Bank",
-          "classification": "ASSETES",
-          "increase_decrease": "Increase",
-          "debit_credit": "DR",
+          "classification": "ASSETS",
+          "increase/decrease": "Increase",
+          "debit/credit": "DR",
           "amount": 80000
         },
         {
           "name": "Samsung Ltd",
-          "classification": "ASSETES",
-          "increase_decrease": "Decrease",
-          "debit_credit": "CR",
+          "classification": "ASSETS",
+          "increase/decrease": "Decrease",
+          "debit/credit": "CR",
           "amount": 80000
         }
       ]
@@ -424,15 +424,15 @@
         {
           "name": "Apple Inc",
           "classification": "LIABILITY",
-          "increase_decrease": "Decrease",
-          "debit_credit": "DR",
+          "increase/decrease": "Decrease",
+          "debit/credit": "DR",
           "amount": 60000
         },
         {
           "name": "Bank",
-          "classification": "ASSETES",
-          "increase_decrease": "Decrease",
-          "debit_credit": "CR",
+          "classification": "ASSETS",
+          "increase/decrease": "Decrease",
+          "debit/credit": "CR",
           "amount": 60000
         }
       ]
@@ -469,16 +469,16 @@
       "aspects": [
         {
           "name": "Rent paid in advance",
-          "classification": "ASSETES",
-          "increase_decrease": "Increase",
-          "debit_credit": "DR",
+          "classification": "ASSETS",
+          "increase/decrease": "Increase",
+          "debit/credit": "DR",
           "amount": 12000
         },
         {
           "name": "cash",
-          "classification": "ASSETES",
-          "increase_decrease": "Decrease",
-          "debit_credit": "CR",
+          "classification": "ASSETS",
+          "increase/decrease": "Decrease",
+          "debit/credit": "CR",
           "amount": 12000
         }
       ]
